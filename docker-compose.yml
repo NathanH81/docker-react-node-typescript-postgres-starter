@@ -3,7 +3,7 @@ services:
   postgres:
     container_name: local-postgres
     environment:
-      - POSTGRES_PASSWORD=helloworld
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
     image: postgres:latest
     ports:
       - "5432:5432"
