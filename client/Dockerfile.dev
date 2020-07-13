@@ -1,0 +1,6 @@
+FROM node:13.8-alpine AS alpine
+WORKDIR /app
+COPY package.json .
+COPY yarn.lock .
+COPY . .
+CMD [ -d "node_modules" ] && yarn start || yarn install --frozen-lockfile && yarn start

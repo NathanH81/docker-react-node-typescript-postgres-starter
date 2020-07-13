@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc -p ."
+  },
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^2.15.1",
+    "graphql": "^15.3.0",
+    "pg": "^8.3.0",
+    "reflect-metadata": "^0.1.13",
+    "tsc": "1.20150623.0",
+    "type-graphql": "^1.0.0-rc.3",
+    "typeorm": "^0.2.25"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.8",
+    "nodemon": "^1.19.2",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  }
+}

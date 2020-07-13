@@ -1,0 +1,40 @@
+version: "3.7"
+services:
+  postgres:
+    container_name: local-postgres
+    environment:
+      - POSTGRES_PASSWORD=helloworld
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  webapp:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    container_name: webapp
+    ports:
+      - "3000:3000"
+    stdin_open: true #this is required for create-react-app to work
+    volumes:
+      - ./client:/app
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    container_name: server
+    depends_on:
+      - postgres
+    environment:
+      - PG_DATABASE=${PG_DATABASE}
+      - PG_HOST=${PG_HOST}
+      - PG_PASSWORD=${PG_PASSWORD}
+      - PG_PORT=${PG_PORT}
+      - PG_USER=${PG_USER}
+    ports:
+      - "4000:4000"
+      - "40000:40000"
+    volumes:
+      - ./server:/app
